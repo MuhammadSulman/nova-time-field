@@ -68,6 +68,11 @@ class TimeField extends Field
     ) {
         if ($request->exists($requestAttribute)) {
             $sentData = $request[$requestAttribute];
+            
+            if(is_null($sentData)){
+                $sentData = "00:00";
+            }
+
             if ($this->nullable && $sentData === null) {
                 $model->{$attribute} = null;
             } else {
